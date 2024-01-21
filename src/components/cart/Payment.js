@@ -60,7 +60,7 @@ const Payment = () => {
         }
       };
       const { data } = await axios.post(
-        "https://oneshoptop.herokuapp.com/api/v1/payment/process",
+        "http://localhost:5070/api/v1/payment/process",
         paymentData,
         config
       );
