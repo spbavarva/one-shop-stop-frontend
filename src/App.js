@@ -42,6 +42,7 @@ import Contact from './components/layout/contact/Contact';
 import About from './components/layout/about/About';
 
 function App() {
+  axios.defaults.withCredentials = true;
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
   const stripeApiKey =
