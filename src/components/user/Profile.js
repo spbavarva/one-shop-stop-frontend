@@ -9,7 +9,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   const { user, isAuthenticated, loading } = useSelector((state) => state.user);
-
+  console.log(user)
   useEffect(() => {
     if (isAuthenticated === false) {
       navigate("/login");
@@ -32,6 +32,8 @@ const Profile = () => {
               <div>
                 <h4>Full Name</h4>
                 <p>{user.name}</p>
+                <p>{user.displayName}</p>
+                
               </div>
               <div>
                 <h4>Email</h4>

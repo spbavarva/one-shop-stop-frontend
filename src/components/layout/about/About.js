@@ -26,7 +26,7 @@ const About = () => {
               Visit Instagram
             </Button>
             <span>
-              This Ecommerce website is made with MERN stack technology by
+              This One Shop Stop website is made with MERN stack technology by
               @sp_bavarva. You can contact me at{" "}
               <a href="mailto:snehbavarva@gmail.com" />
             </span>

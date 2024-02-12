@@ -19,7 +19,7 @@ const Footer = () => {
         <h1>One Shop Stop</h1>
         <p>High Quality is our first priority</p>
 
-        <p>Copyrights 2021 &copy; sp_bavarva</p>
+        <p>Copyrights 2024 &copy; sp_bavarva</p>
       </div>
 
       <div className="rightFooter">

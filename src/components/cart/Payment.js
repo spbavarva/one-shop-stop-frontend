@@ -19,6 +19,7 @@ import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import { useNavigate } from "react-router-dom";
 import { createOrder, clearError } from "../../actions/orderAction";
 
+const stripeApiKey = 'sk_test_51KL0EuSDefxy4XCKMwLGgRWaHVkJVBf1waApKptnOv4uFK0dkwlo8m8Hl8EjSJ2X37AKTN16yZXcSnb4akkFNgVK00iCwmwNWT';
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
 
@@ -56,7 +57,8 @@ const Payment = () => {
     try {
       const config = {
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${stripeApiKey}`
         }
       };
       const { data } = await axios.post(

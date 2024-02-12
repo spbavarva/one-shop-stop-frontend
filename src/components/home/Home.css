@@ -67,6 +67,7 @@
   flex-wrap: wrap;
   justify-content: center;
   max-width: 100%;
+  scroll-behavior: smooth;
 }
 
 .productCard {

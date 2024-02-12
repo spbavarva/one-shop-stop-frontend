@@ -74,7 +74,6 @@ const UserOptions = ({ user }) => {
         onOpen={() => setOpen(true)}
         open={open}
         style={{ zIndex: "11" }}
-        open={open}
         direction="down"
         className="speedDial"
         icon={

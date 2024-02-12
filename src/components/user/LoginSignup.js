@@ -28,6 +28,10 @@ const LoginSignup = () => {
     password: ""
   });
 
+  const loginwithgoogle = ()=>{
+    window.open("http://localhost:5070/auth/google/callback","_self")
+  }
+
   const { loading, error, isAuthenticated } = useSelector(
     (state) => state.user
   );
@@ -119,6 +123,10 @@ const LoginSignup = () => {
                 </div>
                 <Link to="/password/forgot">Forget Password ?</Link>
                 <input type="submit" value="Login" className="loginBtn" />
+
+                <button className='login-with-google-btn' onClick={loginwithgoogle}>
+                    Continue With Google
+                </button>
               </form>
               <form
                 className="signUpForm"
@@ -180,6 +188,10 @@ const LoginSignup = () => {
                   <Form.Control onChange={(e) => postDetails(e.target.files[0])} type="file" />
                 </Form.Group> */}
                 <input type="submit" value="Register" className="signUpBtn" />
+
+                <button className='login-with-google-btn' onClick={loginwithgoogle}>
+                    Continue With Google
+                </button>
               </form>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { ReactNavbar } from "overlay-navbar";
-import logo from "../../../images/logo.png";
+import logo from "../../../images/logo.webp";
 
 const options = {
   burgerColor:"rgba(20,20,20,0.7)",

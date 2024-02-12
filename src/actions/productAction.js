@@ -58,7 +58,7 @@ export const getProduct =
     } catch (error) {
       dispatch({
         type: ALL_PRODUCT_FAIL,
-        payload: error.response.data.message
+        // payload: error.response.data.message
       });
     }
   };
@@ -123,7 +123,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     console.log(error);
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
-      payload: error.response.data.message
+      // payload: error.response.data.message
     });
   }
 };
