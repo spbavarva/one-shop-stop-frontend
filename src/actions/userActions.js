@@ -90,6 +90,15 @@ export const loadUser = () => async (dispatch) => {
   }
 };
 
+export const getAuthUser = async () => {
+  try {
+    const { data } = await axios.get(`http://localhost:5070/api/v1/me`);
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
+
 export const logoutUserAcc = () => async (dispatch) => {
   try {
     await axios.get(`http://localhost:5070/api/v1/logout`);
