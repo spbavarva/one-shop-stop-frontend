@@ -10,36 +10,16 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { useSelector, useDispatch } from "react-redux";
 
-const images = [
-  {
-    label: "",
-    imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60"
-  },
-  {
-    label: "",
-    imgPath:
-      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60"
-  },
-  {
-    label: "",
-    imgPath:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250"
-  },
-  {
-    label: "",
-    imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60"
-  }
-];
-
 function SwipeableTextMobileStepper() {
   const { product, loading, error } = useSelector(
     state => state.productDetails
   );
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = images.length;
+  const [maxSteps, setMaxSteps] = React.useState(product?.images?.length || 0);
+  React.useEffect(()=>{
+    setMaxSteps(product?.images?.length || 0);
+  }, [product?.images])
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -66,9 +46,9 @@ function SwipeableTextMobileStepper() {
           bgcolor: "background.default"
         }}
       >
-        <Typography>
+        {/* <Typography>
           {images[activeStep].label}
-        </Typography>
+        </Typography> */}
       </Paper>
       <SwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
