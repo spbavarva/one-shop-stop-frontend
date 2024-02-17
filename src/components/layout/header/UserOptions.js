@@ -63,6 +63,9 @@ const UserOptions = ({ user }) => {
   function logoutUser() {
     dispatch(logoutUserAcc());
     alert.success("Logout Successful!");
+    setTimeout(()=>{
+      navigate("/login");
+    }, 500)
   }
 
   return (
@@ -77,7 +80,7 @@ const UserOptions = ({ user }) => {
         direction="down"
         className="speedDial"
         icon={
-          <img className="speedDialIcon" src={"/Profile.png"} alt="Profile" />
+          <img className="speedDialIcon" src={ user.image || "/Profile.png"} alt="Profile" style={{ background: user.image ? "#fff": "transparent" }}/>
         }
       >
         {options.map((item) => (
