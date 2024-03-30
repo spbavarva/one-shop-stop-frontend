@@ -103,6 +103,8 @@ export const logoutUserAcc = () => async (dispatch) => {
   try {
     await axios.get(`http://localhost:5070/api/v1/logout`);
 
+    localStorage.removeItem("cartItems")
+    localStorage.removeItem("shippingInfo")
     dispatch({ type: LOGOUT_SUCCESS });
   } catch (error) {
     dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });

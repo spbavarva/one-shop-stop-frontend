@@ -27,7 +27,8 @@ const categories = [
   "Watches",
   "Books",
   "TV",
-  "Camera"
+  "Camera",
+  "Chair"
 ];
 
 const Products = () => {

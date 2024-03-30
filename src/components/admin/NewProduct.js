@@ -36,7 +36,8 @@ const NewProduct = () => {
     "Watches",
     "Books",
     "TV",
-    "Camera"
+    "Camera",
+    "Chair"
   ];
 
   const createProductSubmitHandler = e => {
