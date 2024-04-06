@@ -1,0 +1,36 @@
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the container fills the viewport height */
+    background-color: #f0f0f0; /* Light gray background */
+    font-family: Arial, sans-serif; /* Fallback font */
+  }
+  
+  .not-found-container h1 {
+    font-size: 12rem; /* Large heading */
+    margin: 0 0 2rem 0; /* Adjust margin for spacing */
+    color: #333; /* Dark gray text */
+  }
+  
+  .not-found-container p {
+    font-size: 1.2rem; /* Moderate paragraph size */
+    margin: 0 0 2rem 0; /* Adjust margin for spacing */
+    color: #666; /* Light gray text */
+  }
+  
+  .not-found-container a {
+    background-color: #333; /* Dark gray button background */
+    color: #fff; /* White button text */
+    padding: 1rem 2rem; /* Padding for button size */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Indicate hover effect */
+    transition: background-color 0.2s ease; /* Smooth background color transition */
+  }
+  
+  .not-found-container a:hover {
+    background-color: #222; /* Darken background on hover */
+  }

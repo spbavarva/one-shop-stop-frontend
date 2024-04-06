@@ -47,7 +47,7 @@ const Payment = () => {
     totalPrice: orderInfo.totalPrice
   };
 
-  console.log(order);
+  // console.log(order);
 
   const submitHandler = async (e) => {
     e.preventDefault();

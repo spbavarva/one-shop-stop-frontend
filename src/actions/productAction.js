@@ -68,7 +68,6 @@ export const getAdminProduct = () => async (dispatch) => {
     dispatch({ type: ADMIN_PRODUCT_REQUEST });
 
     const { data } = await axios.get("http://localhost:5070/api/v1/admin/products");
-    console.log("okok");
 
     dispatch({
       type: ADMIN_PRODUCT_SUCCESS,
@@ -114,13 +113,13 @@ export const getProductDetails = (id) => async (dispatch) => {
 
     const { data } = await axios.get(`http://localhost:5070/api/v1/products/${id}`);
 
-    console.log(data);
+    // console.log(data);
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
       payload: data.product
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     dispatch({
       type: PRODUCT_DETAILS_FAIL,
       // payload: error.response.data.message
@@ -143,7 +142,7 @@ export const newReview = (reviewData) => async (dispatch) => {
       payload: data.success
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     dispatch({
       type: NEW_REVIEW_FAIL,
       payload: error.response.data.message
@@ -164,14 +163,14 @@ export const createProduct = (productData) => async (dispatch) => {
       productData,
       config
     );
-    console.log(productData);
+    // console.log(productData);
 
     dispatch({
       type: NEW_PRODUCT_SUCCESS,
       payload: data
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     dispatch({
       type: NEW_PRODUCT_FAIL
       // payload: error.response.data.message
@@ -187,20 +186,20 @@ export const updateProduct = (id, productData) => async (dispatch) => {
       headers: { "Content-Type": "application/json" }
     };
 
-    console.log("productData", productData);
+    // console.log("productData", productData);
     const { data } = await axios.put(
       `http://localhost:5070/api/v1/admin/product/${id}`,
       productData,
       config
     );
-    console.log("update");
+    // console.log("update");
 
     dispatch({
       type: UPDATE_PRODUCT_SUCCESS,
       payload: data.success
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     dispatch({
       type: UPDATE_PRODUCT_FAIL
       // payload: error.response.data.message
@@ -213,14 +212,14 @@ export const deleteProduct = (id) => async (dispatch) => {
     dispatch({ type: DELETE_PRODUCT_REQUEST });
 
     const { data } = await axios.delete(`http://localhost:5070/api/v1/admin/product/${id}`);
-    console.log("delete");
+    // console.log("delete");
 
     dispatch({
       type: DELETE_PRODUCT_SUCCESS,
       payload: data.success
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     dispatch({
       type: DELETE_PRODUCT_FAIL,
       payload: error.response.data.message

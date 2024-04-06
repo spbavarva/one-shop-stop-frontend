@@ -6,7 +6,6 @@ import { clearError, myOrder } from "../../actions/orderAction";
 import Loader from "../layout/loader/Loader";
 import { Link } from "react-router-dom";
 import { useAlert } from "react-alert";
-import Typography from "@material-ui/core/Typography";
 import MetaData from "../layout/MetaData";
 import LaunchIcon from "@material-ui/icons/Launch";
 
@@ -15,7 +14,7 @@ const MyOrder = () => {
   const alert = useAlert();
   const { loading, error, order } = useSelector((state) => state.myOrder);
   const { user } = useSelector((state) => state.user);
-  console.log(order);
+  // console.log(order);
 
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 300, flex: 1 },

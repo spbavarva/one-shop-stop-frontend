@@ -4,8 +4,6 @@ import Sidebar from "./Sidebar";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Doughnut, Line } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
-import { Chart } from "react-chartjs-2";
 import { useSelector, useDispatch } from "react-redux";
 import { getAdminProduct } from "../../actions/productAction";
 import { getAllOrders } from "../../actions/orderAction";
@@ -55,8 +53,8 @@ const Dashboard = () => {
     ]
   };
 
-  console.log("totalAmount : ", totalAmount);
-  console.log("orders : ", orders);
+  // console.log("totalAmount : ", totalAmount);
+  // console.log("orders : ", orders);
 
   useEffect(
     () => {
