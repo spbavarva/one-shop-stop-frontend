@@ -11,10 +11,12 @@ const ConfirmOrder = () => {
   const { cartItems, shippingInfo } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
 
-  const subTotal = cartItems.reduce(
+  let subTotal = cartItems.reduce(
     (acc, item) => acc + item.quantity * item.price,
     0
   );
+  let offer = subTotal >= 1000 ? subTotal*0.10 : 0;
+  subTotal = subTotal - offer;
 
   const shippingCharges = subTotal > 500 ? 0 : 150;
 
@@ -26,6 +28,7 @@ const ConfirmOrder = () => {
 
   const proceedToPayment = () => {
     const data = {
+      offer,
       subTotal,
       shippingCharges,
       tax,
@@ -64,7 +67,7 @@ const ConfirmOrder = () => {
               {cartItems &&
                 cartItems.map((item) => (
                   <div key={item.product}>
-                    <Link to={`/product/${item.product}`}>{item.name}</Link>{" "}
+                    <Link to={`/product/${item.product}`}>{item.name}{item.selectedVariant ? ` (${item.selectedVariant.name})`: ""}</Link>{" "}
                     <span>
                       {item.quantity} X {item.price} ={" "}
                       <b>{item.price * item.quantity}</b>

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import "./cart.css";
 import CartItemCard from "./CartItemCard";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,6 +15,23 @@ const Cart = () => {
   const navigate = useNavigate();
 
   const { cartItems } = useSelector((state) => state.cart);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [totalOffer, setTotalOffer] = useState(0);
+
+  useEffect(()=>{
+    const total = cartItems.reduce(
+      (acc, item) => acc + item.quantity * item.price,
+      0
+    );
+    if(total >= 1000) {
+      setTotalOffer(total*0.10);
+      setTotalAmount(total - total*0.10);
+    } else {
+      setTotalOffer(0);
+      setTotalAmount(total);
+    }
+
+  }, [cartItems]);
 
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1;
@@ -87,15 +104,18 @@ const Cart = () => {
                   }`}</p>
                 </div>
               ))}
-
+            { totalOffer && <div className="cartGrossProfit">
+              <div></div>
+              <div className="cartGrossProfitBox">
+                  <p>Offer (10%)</p>
+                  <p>{`- ₹${totalOffer.toFixed(2)}`}</p>
+              </div>
+            </div> }
             <div className="cartGrossProfit">
               <div></div>
               <div className="cartGrossProfitBox">
                 <p>Gross Total</p>
-                <p>{`₹${cartItems.reduce(
-                  (acc, item) => acc + item.quantity * item.price,
-                  0
-                )}`}</p>
+                <p>{`₹${totalAmount.toFixed(2)}`}</p>
               </div>
               <div></div>
               <div className="checkOutBtn">

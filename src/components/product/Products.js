@@ -18,6 +18,7 @@ import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import { inputLabelClasses } from "@mui/material/InputLabel";
 import { useNavigate } from "react-router-dom";
+import OfferBar from "../home/OfferBar";
 
 const categoriesAll = ["all"];
 const categories = [
@@ -189,7 +190,7 @@ const Products = () => {
                     Search
                   </Button>
                 </form>}
-
+                <OfferBar />
             <div className="products" id="container">
               {products &&
                 products.map(product =>

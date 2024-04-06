@@ -59,6 +59,7 @@ const UpdateProduct = () => {
     myForm.set("description", description);
     myForm.set("category", category);
     myForm.set("stock", stock);
+    myForm.set("variants", JSON.stringify(variants));
 
     images.forEach((image) => {
       myForm.append("images", image);
@@ -107,6 +108,7 @@ const UpdateProduct = () => {
       setCategory(product.category);
       setStock(product.stock);
       setOldImages(product.images);
+      setVariants(product.variants || []);
     }
 
     if (isUpdated) {
@@ -115,6 +117,50 @@ const UpdateProduct = () => {
       dispatch({ type: UPDATE_PRODUCT_RESET });
     }
   }, [dispatch, error, alert, navigate, isUpdated, id, product, updateError]);
+
+    // Variant
+    const [variants, setVariants] = useState([]);
+
+    useEffect(() => {
+      // Ensure there is always a default variant selected
+      if (variants.length > 0 && !variants.some(variant => variant.isDefault)) {
+        handleVariantChange(0, 'isDefault', true);
+      }
+    }, [variants]);
+  
+    const handleAddVariant = () => {
+      // Check if the last variant has empty name or price
+      if (variants.length > 0 && (variants[variants.length - 1].name === '' || variants[variants.length - 1].price === '')) {
+        return; // Don't add a new variant if the last one has empty fields
+      }
+      // Add a new variant
+      setVariants([...variants, { name: '', price: '', isDefault: false }]);
+    };
+  
+    const handleVariantChange = (index, field, value) => {
+      const updatedVariants = [...variants];
+      if (field === 'isDefault' && value === true) {
+        updatedVariants.forEach((variant, i) => {
+          if (i !== index) {
+            variant.isDefault = false;
+          }
+        });
+      }
+      updatedVariants[index][field] = value;
+      setVariants(updatedVariants);
+    };
+  
+    const handleRemoveVariant = (index) => {
+      const updatedVariants = [...variants];
+      updatedVariants.splice(index, 1);
+      setVariants(updatedVariants);
+  
+      // If the removed variant was default, set the first variant as default
+      if (variants[index].isDefault && updatedVariants.length > 0) {
+        handleVariantChange(0, 'isDefault', true);
+      }
+    };
+
   return (
     <Fragment>
       <MetaData title="Create Product" />
@@ -138,7 +184,7 @@ const UpdateProduct = () => {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div>
+            { variants.length == 0 && <div>
               <AttachMoneyIcon />
               <input
                 type="number"
@@ -147,7 +193,44 @@ const UpdateProduct = () => {
                 onChange={(e) => setPrice(e.target.value)}
                 value={price}
               />
-            </div>
+            </div>}
+            <span style={{
+            width: "100%",
+            marginTop: "15px",
+            marginBottom: "10px"
+      }} className="option-container">
+            <h4 style={{ marginRight: "3px", marginBottom: "3px", width: "100%" }}>Price Options: </h4>
+        {variants.map((variant, index) => (
+          <><div className="variant-option-div" key={index} style={{ marginBottom: '10px' }}>
+            <input
+              type="text"
+              value={variant.name}
+              placeholder="Option Name"
+              onChange={(e) => handleVariantChange(index, 'name', e.target.value)}
+              style={{ marginRight: '5px' }}
+            />
+            <input
+              style={{ marginRight: '5px' }}
+              type="number"
+              value={variant.price}
+              placeholder="Price"
+              onChange={(e) => handleVariantChange(index, 'price', e.target.value)}
+            />
+            <label style={{ marginRight: '5px' }}>
+              <input
+                type="radio"
+                name={`defaultVariant-${index}`}
+                checked={variant.isDefault}
+                onChange={(e) => handleVariantChange(index, 'isDefault', true)}
+                style={{ marginRight: '5px' }}
+              />
+              Default
+            </label>
+            <button type="button" onClick={() => handleRemoveVariant(index)}>Remove</button>
+          </div><br></br></>
+        ))}
+        <button type="button" className="addButton" onClick={handleAddVariant}>Add Price Option</button>
+      </span>
 
             <div>
               <DescriptionIcon />

@@ -105,7 +105,7 @@ const OrderDetails = () => {
                     <div key={item.product}>
                       <img src={item.image} alt="Product" />
                       <Link to={`/product/${item.product}`}>
-                        {item.name}
+                        {item.name}{item.selectedVariant ? ` (${item.selectedVariant.name})`: ""}
                       </Link>{" "}
                       <span>
                         {item.quantity} X ₹{item.price} ={" "}

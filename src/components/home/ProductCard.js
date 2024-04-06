@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
         <span className="productCardSpan"> ({product.numOfReview} Reviews) </span>
         {/* <span> ({product.stock}) </span> */}
       </div>
-      <span>${product.price}</span>
+      { product.variants?.length ? <span>₹{product.variants.find(variant => variant.isDefault)?.price}</span> : <span>₹{product.price}</span>}
     </Link>
   );
 };

@@ -26,6 +26,7 @@ import SwipeableTextMobileStepper from "./SwipeableTextMobileStepper";
 import { useNavigate } from "react-router-dom";
 import { TextField } from "@mui/material";
 import { inputLabelClasses } from "@mui/material/InputLabel";
+import OfferBar from "../home/OfferBar.js";
 
 // const App = () => {
 //   const data = [
@@ -94,7 +95,15 @@ const ProductDetails = () => {
     state => state.productDetails
   );
   const { success, error: reviewError } = useSelector(state => state.newReview);
-
+  const [selectedVariant, setSelectedVariant] = useState(product.variants?.find(variant => variant.isDefault));
+  const handleVariantChange = (variant) => {
+    console.log(JSON.stringify(variant));
+    setSelectedVariant(variant);
+  }
+  useEffect(()=>{
+    setSelectedVariant(product.variants?.find(variant => variant.isDefault))
+  }, [product.variants])
+  
   console.log(product);
 
   const options = {
@@ -123,7 +132,7 @@ const ProductDetails = () => {
   };
 
   const addToCartHandler = () => {
-    dispatch(addItemsToCart(id, quantity));
+    dispatch(addItemsToCart(id, quantity, selectedVariant));
     alert.success("Item added successfully to cart");
   };
 
@@ -220,7 +229,7 @@ const ProductDetails = () => {
                 Search
               </Button>
             </form>
-
+            <OfferBar />
             <div className="ProductDetails">
               <div>
                 <SwipeableTextMobileStepper />
@@ -237,8 +246,17 @@ const ProductDetails = () => {
                     {" "}({product.numOfReviews} Reviews)
                   </span>
                 </div>
+                
                 <div className="detailsBlock-3">
-                  <h1>{`₹${product.price}`}</h1>
+                  <h1>{`₹${selectedVariant ? selectedVariant.price : product.price}`}</h1>
+                  <div className="detailsBlock-4" style={{ display: "flex" }}>
+                  <p style={{ paddingRight: "10px" }}>Select Option : </p>
+                  <select onChange={(e) => handleVariantChange(product.variants[e.target.selectedIndex])}>
+                      {product.variants?.map((variant, i) => (
+                        <option key={i} value={variant.name}>{variant.name}</option>
+                      ))}
+                </select>
+                </div>
                   <div className="detailsBlock-3-1">
                     <div className="detailsBlock-3-1-1">
                       <button onClick={decreaseQuantity}>-</button>

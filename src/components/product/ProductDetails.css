@@ -5,6 +5,7 @@
   padding: 6vmax;
   box-sizing: border-box;
   display: flex;
+  padding-top: 0;
 }
 
 .ProductDetails > div {

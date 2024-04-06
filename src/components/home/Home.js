@@ -11,6 +11,8 @@ import { useAlert } from "react-alert";
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import { inputLabelClasses } from "@mui/material/InputLabel";
+import Marquee from "react-fast-marquee";
+import OfferBar from "./OfferBar.js";
 
 const Home = () => {
   const alert = useAlert();
@@ -61,7 +63,6 @@ const Home = () => {
           </div>
 
           <h2 className="homeHeading">Featured Products</h2>
-
           <form className="search" onSubmit={searchSubmitHandler}>
             <TextField
               id="standard-search"
@@ -99,7 +100,7 @@ const Home = () => {
               Search
             </Button>
           </form>
-
+          <OfferBar />
           <div className="container" id="container">
             {products &&
               products.map((product) => <ProductCard product={product} />)}
