@@ -50,7 +50,7 @@ const UpdateProfile = () => {
      if (user) {
       setName(user.name);
       setEmail(user.email);
-      console.log("Updated");
+      // console.log("Updated");
 
     }
     

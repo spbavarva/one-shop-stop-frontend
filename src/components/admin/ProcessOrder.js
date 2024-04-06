@@ -31,9 +31,9 @@ const ProcessOrder = () => {
     const myForm = new FormData();
 
     myForm.set("status", status);
-    console.log("before updateOrders");
+    // console.log("before updateOrders");
     dispatch(updateOrders(id, myForm));
-    console.log("after updateOrders");
+    // console.log("after updateOrders");
   };
 
   useEffect(() => {

@@ -10,7 +10,7 @@ import { useAlert } from "react-alert";
 
 const OrderDetails = () => {
   const { order, error, loading } = useSelector((state) => state.orderDetails);
-  console.log(order);
+  // console.log(order);
 
   const dispatch = useDispatch();
   const alert = useAlert();

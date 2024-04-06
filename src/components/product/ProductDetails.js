@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Carousel from "react-material-ui-carousel";
 import Loader from "../layout/loader/Loader";
 import "./ProductDetails.css";
 import {
@@ -17,8 +16,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Button,
-  Paper
+  Button
 } from "@material-ui/core";
 import { Rating } from "@material-ui/lab";
 import { NEW_REVIEW_RESET } from "../../constants/productConstants";
@@ -178,7 +176,6 @@ const ProductDetails = () => {
       }
 
       if (success) {
-        console.log("hello");
         dispatch({ type: NEW_REVIEW_RESET });
         alert.success("Review Submitted Successfully");
       }

@@ -38,7 +38,7 @@ const Home = () => {
   // );
   useEffect(() => {
     if (error) {
-      console.log(error);
+      // console.log(error);
       alert.error(error);
       dispatch(clearError());
     }

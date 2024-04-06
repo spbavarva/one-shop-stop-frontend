@@ -40,6 +40,7 @@ import UpdateUser from "./components/admin/UpdateUser";
 import ProductReviews from "./components/admin/ProductReviews";
 import Contact from './components/layout/contact/Contact';
 import About from './components/layout/about/About';
+import NotFoundPage from "./404Page";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -124,6 +125,7 @@ function App() {
               </Elements>
             }
           ></Route>
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
 
         <Footer></Footer>
